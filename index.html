@@ -9,13 +9,19 @@
     <meta name="author" content="Vijay Parsi">
     <link rel="icon" href="favicon.ico">
 
-    <title>Life Calendar</title>
+    <title>Your Time Is Limited</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sticky-footer.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="jquery-2.2.1.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+
 
   </head>
 
@@ -24,9 +30,13 @@
     <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1>Your life's calendar</h1>
+        <h1>Your Time Is Limited</h1>
       </div>
-      <p class="lead">Input your birthday and life expectancy</p>
+      <p class="lead">Input your birthday and </p>
+
+      <!-- Slider -->
+      <h3>Life Expectancy</h3>
+      <div id="slider"></div>
 
     </div>
 
@@ -38,5 +48,13 @@
       </div>
     </footer>
 
+
+    <script>
+    $( "#slider" ).slider({
+    	range: false,
+    	value: 90
+    });
+
+    </script>
   </body>
 </html>
