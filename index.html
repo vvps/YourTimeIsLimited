@@ -64,6 +64,8 @@
       <br/>
       <br/>
       <div id="resultText" align="center" class="analysisText"></div>
+      <div id="messageText" align="center" class="analysisText"></div>
+
     </div>
 
     <footer class="footer">
@@ -127,6 +129,10 @@
               document.getElementById("resultText").innerHTML = "Are you even alive?! &#x1F47D;";
             } else {
               document.getElementById("resultText").innerHTML = "You have been alive for " + diffInWeeks.toString() + " weeks out of " + totalWeeks.toString() + " weeks. <br />" + percentLifeRemaining + "% of life remaining.";
+            }
+
+            if(percentLifeRemaining < 0) {
+              document.getElementById("messageText").innerHTML = "Congratulations! You are outliving yourself! &#x1F60E;"
             }
       }
     </script>
