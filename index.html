@@ -22,6 +22,9 @@
     <script src="jquery-ui.min.js"></script>
     <link rel="stylesheet" href="jquery-ui.css">
 
+    <!-- Moments -->
+    <script src="moment-with-locales.js"></script>
+
   </head>
 
   <body>
@@ -42,20 +45,22 @@
       <br/>
       <!-- Date Picker -->
       <p>
-        <label>Birthdate:</label>
+        <label for="datepicker">Birthdate:</label>
         &nbsp;
         <input type="text" size="25" id="datepicker">
         &nbsp; &nbsp;
-        <label>Today:</label>
+        <label for="todaysDate">Today:</label>
         &nbsp;
         <input type="text" size="25" id="todaysDate" readonly>
       </p>
       <br/>
       <br/>
       <div align="center">
-        <input type="submit" value="Show me!">
+        <button onclick="onCalculate()">Submit</button>
       </div>
-
+      <br/>
+      <br/>
+      <div id="resultText"></div>
     </div>
 
     <footer class="footer">
@@ -88,21 +93,27 @@
     </script>
 
     <script type="text/javascript">
-      var currentTime = new Date()
-      var month = currentTime.getMonth() + 1
-      var day = currentTime.getDate()
-      var year = currentTime.getFullYear()
+      var currentTime = new Date();
+      var month = currentTime.getMonth() + 1;
+      var day = currentTime.getDate();
+      var year = currentTime.getFullYear();
       document.getElementById('todaysDate').value = day + " / " + month + " / " + year;
     </script>
 
     <script>
-      $(function() {
-        $( "input[type=submit], button" )
-          .button()
-          .click(function( event ) {
-            event.preventDefault();
-          });
-      });
+      function onCalculate() {
+            var expYears = $("#slider-range-min").slider("value");
+            var bDate = $("#datepicker").datepicker("getDate");
+            var thisDate = moment();
+            var birthDate = moment([bDate.getFullYear(), bDate.getMonth(), bDate.getDate()]);
+            var diffInDays = thisDate.diff(birthDate, 'days');
+
+            if(diffInDays <= 0) {
+              document.getElementById("resultText").innerHTML = "Are you even alive?!";
+            } else {
+              document.getElementById("resultText").innerHTML = diffInDays.toString();
+            }
+      }
     </script>
 
   </body>
