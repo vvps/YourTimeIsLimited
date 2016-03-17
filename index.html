@@ -17,6 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="css/sticky-footer.css" rel="stylesheet">
 
+    <!-- Custom styles -->
+    <link href="css/ytil.css" rel="stylesheet">
+
     <!-- jQuery -->
     <script src="js/jquery-2.2.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -60,7 +63,7 @@
       </div>
       <br/>
       <br/>
-      <div id="resultText" align="center"></div>
+      <div id="resultText" align="center" class="analysisText"></div>
     </div>
 
     <footer class="footer">
@@ -115,12 +118,15 @@
             // ToDo
             // Got to check if date is empty and show message
 
-            var diffInDays = thisDate.diff(birthDate, 'days');
+            var diffInWeeks = thisDate.diff(birthDate, 'weeks');
+            var deathDay = birthDate.add(expYears, 'years');
+            var totalWeeks = diffInWeeks + deathDay.diff(thisDate, 'weeks');
+            var percentLifeRemaining = ((totalWeeks-diffInWeeks)*100/totalWeeks).toFixed(3);
 
-            if(diffInDays <= 0) {
+            if(diffInWeeks <= 0) {
               document.getElementById("resultText").innerHTML = "Are you even alive?! &#x1F47D;";
             } else {
-              document.getElementById("resultText").innerHTML = diffInDays.toString();
+              document.getElementById("resultText").innerHTML = "You have been alive for " + diffInWeeks.toString() + " weeks out of " + totalWeeks.toString() + " weeks. <br />" + percentLifeRemaining + "% of life remaining.";
             }
       }
     </script>
