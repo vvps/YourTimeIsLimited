@@ -31,18 +31,30 @@
       <div class="page-header">
         <h1>Your Time Is Limited</h1>
       </div>
-      <p class="lead" align="center">Input your
-      </p>
+      <p class="lead" align="center">Input your</p>
 
       <!-- Slider -->
       <label for="amount">Life Expectancy:</label>
       <input type="text" id="amount" readonly style="border:0; color:#0c9adb;">
       <div id="slider-range-min"></div>
-      <br/><br/>
+      <br/>
+      <p class="lead" align="center">&amp;</p>
+      <br/>
       <!-- Date Picker -->
       <p>
         <label>Birthdate:</label>
-        <input type="text" size="40" id="datepicker"></p>
+        &nbsp;
+        <input type="text" size="25" id="datepicker">
+        &nbsp; &nbsp;
+        <label>Today:</label>
+        &nbsp;
+        <input type="text" size="25" id="todaysDate" readonly>
+      </p>
+      <br/>
+      <br/>
+      <div align="center">
+        <input type="submit" value="Show me!">
+      </div>
 
     </div>
 
@@ -71,14 +83,26 @@
 
     <script>
       $(function () {
-        $("#datepicker").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          dateFormat: "DD, d MM, yy"
-        });
+        $("#datepicker").datepicker({changeMonth: true, changeYear: true, yearRange: "-110:+0", dateFormat: "dd / mm / yy"});
       });
+    </script>
 
+    <script type="text/javascript">
+      var currentTime = new Date()
+      var month = currentTime.getMonth() + 1
+      var day = currentTime.getDate()
+      var year = currentTime.getFullYear()
+      document.getElementById('todaysDate').value = day + " / " + month + " / " + year;
+    </script>
 
+    <script>
+      $(function() {
+        $( "input[type=submit], button" )
+          .button()
+          .click(function( event ) {
+            event.preventDefault();
+          });
+      });
     </script>
 
   </body>
