@@ -50,11 +50,15 @@
       <p>
         <label for="datepicker">Birthdate:</label>
         &nbsp;
-        <input type="text" size="25" id="datepicker">
+        <input type="text" size="20" id="datepicker">
         &nbsp; &nbsp;
         <label for="todaysDate">Today is:</label>
         &nbsp;
-        <input type="text" size="25" id="todaysDate" readonly>
+        <input type="text" size="20" id="todaysDate" readonly>
+        &nbsp; &nbsp;
+        <label for="deathYear">Dead by:</label>
+        &nbsp;
+        <input type="text" size="10" id="deathYear" readonly value="--">
       </p>
       <br/>
       <br/>
@@ -148,6 +152,9 @@
               return;
             }
 
+            // Death year field
+            document.getElementById('deathYear').value = bDate.getFullYear() + expYears;
+
             var age = thisDate.format('YYYY') - bDate.getFullYear();
             createMatrix(age, expYears);
       }
@@ -175,7 +182,6 @@
           text += "<br />";
         }
         document.getElementById("matrix").innerHTML = text + "<br /> <br />";
-        console.log(age);
       }
 
     </script>
